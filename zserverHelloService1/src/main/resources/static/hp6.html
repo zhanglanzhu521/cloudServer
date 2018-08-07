@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <title>div随手指移动</title>
+</head>
+<body>
+
+<div style="height: 200px">sdfdfsdfsdf</div>
+<div style="height: 200px">士大夫的方式</div>
+<div style="height: 200px">热热热图</div>
+<div id="id"></div>
+<style type="text/css">
+
+    .ovfHiden{overflow: hidden;height: 100%;}
+    .noscroll body {
+        overflow: hidden;
+    }
+    .noscroll body {
+        position: relative;
+    }
+
+    #id{
+        width: 200px;
+        height: 200px;
+        background: #ccc;
+        position: absolute;
+        left: 0px;
+        top: 100px;
+    }
+</style>
+<script type="text/javascript">
+
+    var _x_start,_y_start,
+        _x_end,_y_end,
+        left_start,top_start;
+    document.getElementById("id").addEventListener("touchstart",function(e)
+    {
+        _x_start=e.touches[0].pageX;
+        _y_start=e.touches[0].pageY;
+        // console.log("start",_x_start)
+        left_start=$("#id").css("left");
+        top_start=$("#id").css("top");
+
+    })
+    document.getElementById("id").addEventListener("touchmove",function(e)
+    {
+        _x_move=e.touches[0].pageX;
+        _y_move=e.touches[0].pageY;
+        // console.log("move",_x_move)
+        $("#id").css("left",parseFloat(_x_move)-parseFloat(_x_start)+parseFloat(left_start)+"px");
+        $("#id").css("top",parseFloat(_y_move)-parseFloat(_y_start)+parseFloat(top_start)+"px");
+        console.log(parseFloat(_y_move)-parseFloat(_y_start)+parseFloat(top_start));
+    })
+    document.getElementById("id").addEventListener("touchend",function(e)
+    {
+        var _x_end=e.changedTouches[0].pageX;
+        var _y_end=e.changedTouches[0].pageY;
+        // console.log("end",_x_end)
+    })
+    //阻止浏览器下拉事件
+    $('#id').on('touchmove', function (event) {
+        $('html,body').addClass('ovfHiden'); //使网页不可滚动
+        // 绑定事件
+        document.addEventListener('touchmove', handler, false);
+
+        // $('html,body').removeClass('ovfHiden'); //使网页恢复可滚动
+        // event.preventDefault();
+    });
+    // or
+    // document.addEventListener('touchmove', function(e){e.preventDefault()}, false);
+
+    $('#id').on('touchend', function (event) {
+        alert("dddd")
+        $('html,body').removeClass('ovfHiden'); //使网页恢复可滚动
+        // 解绑事件
+        document.removeEventListener('touchmove', handler, false);
+        // event.preventDefault();
+    });
+
+    function handler() {
+
+        event.preventDefault();
+    }
+
+
+</script>
+</body>
+</html>

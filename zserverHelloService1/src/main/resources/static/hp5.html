@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+    <title>弹窗</title>
+    <meta charset="utf-8">
+    <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <style>
+        body{margin:0;padding:0;overflow:scroll;overflow-y:hidden;}
+        .barrage{position:fixed;display:block;top:0;}
+        .barrage_name{width:70px;height:70px;background:-webkit-gradient(linear,0 0,100% 100%,from(#f00), to(#0f0));border-radius:50%;}
+        .barrage_name_hover{width:70px;height:70px;background:-webkit-gradient(linear,0 0,100% 100%,from(#ff0), to(#00f));border-radius:50%;}
+        .col1{color:#fff;display: block;padding: 17px;text-align: center;}
+    </style>
+</head>
+<body >
+<div class="barrage" id="barrage">
+    <div class="barrage_name" id="barrage_name">
+        <span class="col1">打开弹幕</span>
+    </div>
+</div>
+<div style="height: 2000px">
+    <p>我是来打酱油的</p>
+    <p>我是来打酱油的</p>
+    <p>我是来打酱油的</p>
+    <p>我是来打酱油的</p>
+    <p>我是来打酱油的</p>
+    <p>我是来打酱油的</p>
+    <p>我是来打酱油的</p>
+    <p>我是来打酱油的</p>
+</div>
+</body>
+<script type="text/javascript">
+
+    $(function () {
+        alert("ssss")
+        $('body').on('touchend', function(event) {
+            $('body').off('touchmove', dd);
+        });
+        // $('body').on('touchstart', function(event) {
+        //     $('body').on('touchmove', dd);
+        // });
+    });
+
+
+    $(function(){
+        var cont=$("#barrage");
+        var contW=$("#barrage").width();
+        var contH=$("#barrage").height();
+        var startX,startY,sX,sY,moveX,moveY;
+        // var winW=$(window).width();
+        // var winH=$(window).height();
+        var winW='2000px';
+        var winH='2000px';
+        var barrage_name=$("#barrage_name");
+        var barrage_frame=$("#barrage_frame");
+        var body=$("body");
+
+
+        cont.on({//绑定事件
+            touchstart:function(e){
+                startX = e.originalEvent.targetTouches[0].pageX;    //获取点击点的X坐标
+                startY = e.originalEvent.targetTouches[0].pageY;    //获取点击点的Y坐标
+                //console.log("startX="+startX+"************startY="+startY);
+                sX=$(this).offset().left;//相对于当前窗口X轴的偏移量
+                sY=$(this).offset().top;//相对于当前窗口Y轴的偏移量
+                //console.log("sX="+sX+"***************sY="+sY);
+                leftX=startX-sX;//鼠标所能移动的最左端是当前鼠标距div左边距的位置
+                rightX=winW-contW+leftX;//鼠标所能移动的最右端是当前窗口距离减去鼠标距div最右端位置
+                topY=startY-sY;//鼠标所能移动最上端是当前鼠标距div上边距的位置
+                bottomY=winH-contH+topY;//鼠标所能移动最下端是当前窗口距离减去鼠标距div最下端位置
+            },
+            touchmove:function(e){
+                e.preventDefault();
+                moveX=e.originalEvent.targetTouches[0].pageX;//移动过程中X轴的坐标
+                moveY=e.originalEvent.targetTouches[0].pageY;//移动过程中Y轴的坐标
+                //console.log("moveX="+moveX+"************moveY="+moveY);
+                if(moveX<leftX){moveX=leftX;}
+                if(moveX>rightX){moveX=rightX;}
+                if(moveY<topY){moveY=topY;}
+                if(moveY>bottomY){moveY=bottomY;}
+                $(this).css({
+                    "left":moveX+sX-startX,
+                    "top":moveY+sY-startY,
+                })
+            },
+
+        })
+
+    })
+
+
+</script>
+</html>

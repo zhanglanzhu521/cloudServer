@@ -1,0 +1,64 @@
+这里讲解一下Spring对异步事件机制的支持，实现方式有两种：
+
+1、全局异步
+即只要是触发事件都是以异步执行，具体配置（spring-config-register.xml）如下：
+
+<task:executor id="executor" pool-size="10" />
+<!-- 名字必须是applicationEventMulticaster和messageSource是一样的，默认找这个名字的对象 -->
+<!-- 名字必须是applicationEventMulticaster，因为AbstractApplicationContext默认找个 -->
+<!-- 如果找不到就new一个，但不是异步调用而是同步调用 -->
+<bean id="applicationEventMulticaster" class="org.springframework.context.event.SimpleApplicationEventMulticaster">
+    <!-- 注入任务执行器 这样就实现了异步调用（缺点是全局的，要么全部异步，要么全部同步（删除这个属性即是同步））  -->
+    <property name="taskExecutor" ref="executor"/>
+</bean>
+
+
+
+
+
+通过注入taskExecutor来完成异步调用。具体实现可参考之前的代码介绍。这种方式的缺点很明显：要么大家都是异步，要么大家都不是。所以不推荐使用这种方式。
+
+
+
+
+
+
+
+
+
+2、更灵活的异步支持
+
+<!-- 开启@AspectJ AOP代理 -->
+<aop:aspectj-autoproxy proxy-target-class="true"/>
+
+<!-- 任务调度器 -->
+<task:scheduler id="scheduler" pool-size="10"/>
+
+<!-- 任务执行器 -->
+<task:executor id="executor" pool-size="10"/>
+
+<!--开启注解调度支持 @Async @Scheduled-->
+<task:annotation-driven executor="executor" scheduler="scheduler" proxy-target-class="true"/>
+
+
+@Component
+public class EmailRegisterListener implements ApplicationListener<RegisterEvent> {
+    @Async
+    @Override
+    public void onApplicationEvent(final RegisterEvent event) {
+        System.out.println("注册成功，发送确认邮件给：" + ((User)event.getSource()).getUsername());
+    }
+}
+
+
+使用@Async注解即可，非常简单。
+
+
+
+这样不仅可以支持通过调用，也支持异步调用，非常的灵活，实际应用推荐大家使用这种方式。
+
+
+
+
+
+通过如上，大体了解了Spring的事件机制，可以使用该机制非常简单的完成如注册流程，而且对于比较耗时的调用，可以直接使用Spring自身的异步支持来优化。

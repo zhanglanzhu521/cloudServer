@@ -1,0 +1,99 @@
+原文地址 https://blog.csdn.net/qq_35800306/article/details/59502392
+
+近期做H5时遇到让一个按钮可任意拖拽的需求，花了半晚上搞定了，并写了个demo和web端的mousemove等方法不同，移动端是touchstart、touchmove、touchend。
+
+注意以下几点：
+
+1.建议头部加上<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+                 <meta name="format-detection" content="telephone=no">  详细移步：点击打开链接
+
+2.要禁止浏览器默认事件，e.preventDefault(); 加在touchmove事件里。原因是：防止与click冲突，如果这个div有点击事件的话。  内部原理是移动端click事件流
+
+touchstart - touchend - click，所以如果preventDefault写在touchstart中会吧click事件禁掉，写在touchmove中完美解决。详细移步：点击打开链接
+
+3.增加边界判断，用document.documentElement.clientWidth获取当前可视区域尺寸,为什么不用$(document).height()这些you can try try...
+
+4.移动端监听事件用 document.getElementById("testDrag").addEventListener
+
+下面附上代码：
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <style type="text/css">
+        body {
+            background-color: #fff;
+        }
+
+        .test-drag {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #0dc2b3;
+            color: #fff;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 14px;
+            line-height: 80px;
+        }
+    </style>
+
+    <script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript">
+        var isdrag = true;
+        var tempX, x, tempY, y;
+
+        function dragStart(e) {
+            isdrag = true;
+            tempX = parseInt($("#testDrag").css("left") + 0);
+            tempY = parseInt($("#testDrag").css("top") + 0);
+            x = e.touches[0].pageX;
+            y = e.touches[0].pageY;
+        }
+
+        function dragMove(e) {
+            if (isdrag) {
+                var curX = tempX + e.touches[0].pageX - x;
+                var curY = tempY + e.touches[0].pageY - y;
+                //边界判断
+                curX = curX < 0 ? 0 : curX;
+                curY = curY < 0 ? 0 : curY;
+                curX = curX < document.documentElement.clientWidth - 80 ? curX : document.documentElement.clientWidth - 80;
+                curY = curY < document.documentElement.clientHeight - 80 ? curY : document.documentElement.clientHeight - 80;
+                $("#testDrag").css({
+                    "left": curX,
+                    "top": curY
+                });
+                //禁止浏览器默认事件
+                e.preventDefault();
+            }
+        }
+
+        function dragEnd() {
+            isdrag = false;
+        }
+
+        $(function() {
+            document.getElementById("testDrag").addEventListener("touchstart", dragStart);
+            document.getElementById("testDrag").addEventListener("touchmove", dragMove);
+            document.getElementById("testDrag").addEventListener("touchend", dragEnd);
+        });
+    </script>
+
+</head>
+
+<body>
+<div style="height: 200px">sdfdfsdfsdf</div>
+<div style="height: 200px">士大夫的方式</div>
+<div style="height: 200px">热热热图</div>
+<div id="testDrag" class="test-drag">
+    H5 拖拽
+</div>
+</body>
+</html>

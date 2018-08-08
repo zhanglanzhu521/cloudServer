@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-@EnableEurekaClient
+//@EnableEurekaClient 2.0已经不需要此注解来开启服务注册与发现功能了，引用了cleint就带有此功能了
 public class HelloServiceApplication1 {
     public static void main(String[] args) {
         SpringApplication.run(HelloServiceApplication1.class, args);

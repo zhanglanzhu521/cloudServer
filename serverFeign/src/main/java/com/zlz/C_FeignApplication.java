@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@EnableEurekaClient
+//@EnableEurekaClient 2.0已经不需要此注解来开启服务注册与发现功能了，引用了cleint就带有此功能了
 @EnableFeignClients
 @RestController
 @EnableHystrixDashboard//hystrix dashboard(仪表盘)功能

@@ -1,0 +1,16 @@
+通过 Hystrix Dashboard 主页面的文字介绍，我们可以知道，Hystrix Dashboard 共支持三种不同的监控方式：
+
+默认的集群监控：通过 URL：http://turbine-hostname:port/turbine.stream 开启，实现对默认集群的监控。
+指定的集群监控：通过 URL：http://turbine-hostname:port/turbine.stream?cluster=[clusterName] 开启，
+实现对 clusterName 集群的监控。
+单体应用的监控： 通过 URL：http://hystrix-app:port/hystrix.stream 开启 ，实现对具体某个服务实例的监控。
+（现在这里的 URL 应该为 http://hystrix-app:port/actuator/hystrix.stream，Actuator 2.x 以后 endpoints 全部在/actuator下，
+可以通过management.endpoints.web.base-path修改）
+
+前两者都对集群的监控，需要整合 Turbine 才能实现。这一部分我们先实现对单体应用的监控，这里的单体应用就用我
+们之前使用 Feign 和 Hystrix 实现的服务消费者——eureka-consumer-feign-hystrix。
+
+
+页面上的另外两个参数：
+Delay：控制服务器上轮询监控信息的延迟时间，默认为 2000 毫秒，可以通过配置该属性来降低客户端的网络和 CPU 消耗。
+Title：该参数可以展示合适的标题。

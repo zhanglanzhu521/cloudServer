@@ -14,12 +14,12 @@ public class TraceBApplication {
 		SpringApplication.run(TraceBApplication.class, args);
 	}
 
+
 	@GetMapping("/trace-b")
 	public Mono<String> trace() {
 		System.out.println("===call trace-b===");
 
 		return Mono.just("Trace");
 	}
-
 
 }

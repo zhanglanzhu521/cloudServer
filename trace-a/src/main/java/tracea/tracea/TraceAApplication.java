@@ -18,9 +18,9 @@ public class TraceAApplication {
 		SpringApplication.run(TraceAApplication.class, args);
 	}
 
-
 	@Autowired
 	private LoadBalancerExchangeFilterFunction lbFunction;
+
 
 	@Bean
 	public WebClient webClient() {

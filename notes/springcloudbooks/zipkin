@@ -1,0 +1,21 @@
+<dependency>
+  <groupId>io.zipkin.zipkin2</groupId>
+  <artifactId>parent</artifactId>
+  <version>2.11.1</version>
+  <type>pom</type>
+</dependency>
+
+
+
+
+所以官方提供了一键脚本
+curl -sSL https://zipkin.io/quickstart.sh | bash -s
+java -jar zipkin.jar
+
+
+
+访问 http://localhost:9411/zipkin/ 就能看到如下界面，嗯还有汉化看起来不错
+
+rabitmq启动方式
+ java -jar zipkin.jar --RABBIT_ADDRESSES=localhost
+

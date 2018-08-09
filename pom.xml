@@ -23,6 +23,9 @@
         <module>/zserverHelloService1</module>
         <module>/serverFeign</module>
         <module>/serverGateway</module>
+        <module>/trace-a</module>
+        <module>/trace-b</module>
+        <module>/zipkin</module>
     </modules>
 
 

@@ -18,6 +18,7 @@ public class TraceAApplication {
 		SpringApplication.run(TraceAApplication.class, args);
 	}
 
+//	http://localhost:8080/trace-a测试地址
 	@Autowired
 	private LoadBalancerExchangeFilterFunction lbFunction;
 

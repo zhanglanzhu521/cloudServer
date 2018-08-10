@@ -24,6 +24,7 @@ public class HelloServiceApplication1 {
 
     @RequestMapping("/hello")
     public String hello(@RequestParam(name = "name") String name) {
+        System.out.println("sdfsdfdfsfsdfs");
         return "你好，" + name + "。我是" + hostname + ",端口是" + port;
     }
 

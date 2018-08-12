@@ -1,6 +1,6 @@
-package com.hellowood.dynamicdatasource.mapper;
+package com.db.dynamicdatasource.mapper;
 
-import com.hellowood.dynamicdatasource.modal.Product;
+import com.db.dynamicdatasource.modal.Product;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

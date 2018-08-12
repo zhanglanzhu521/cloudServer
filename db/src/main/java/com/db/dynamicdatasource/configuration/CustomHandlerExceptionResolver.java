@@ -1,10 +1,10 @@
-package com.hellowood.dynamicdatasource.configuration;
+package com.db.dynamicdatasource.configuration;
 
-import com.hellowood.dynamicdatasource.common.CommonConstant;
-import com.hellowood.dynamicdatasource.common.CommonResponse;
-import com.hellowood.dynamicdatasource.common.ResponseCode;
-import com.hellowood.dynamicdatasource.common.ResponseUtil;
-import com.hellowood.dynamicdatasource.utils.ServiceException;
+import com.db.dynamicdatasource.common.ResponseCode;
+import com.db.dynamicdatasource.common.ResponseUtil;
+import com.db.dynamicdatasource.utils.ServiceException;
+import com.db.dynamicdatasource.common.CommonConstant;
+import com.db.dynamicdatasource.common.CommonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;

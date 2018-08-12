@@ -1,7 +1,7 @@
-package com.hellowood.dynamicdatasource.configuration;
+package com.db.dynamicdatasource.configuration;
 
 
-import com.hellowood.dynamicdatasource.common.DataSourceKey;
+import com.db.dynamicdatasource.common.DataSourceKey;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;

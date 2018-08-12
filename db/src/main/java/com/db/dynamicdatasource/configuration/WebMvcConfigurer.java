@@ -1,4 +1,4 @@
-package com.hellowood.dynamicdatasource.configuration;
+package com.db.dynamicdatasource.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

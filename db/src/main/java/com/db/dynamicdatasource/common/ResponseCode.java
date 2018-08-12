@@ -1,4 +1,4 @@
-package com.hellowood.dynamicdatasource.common;
+package com.db.dynamicdatasource.common;
 
 /**
  * @Title :返回码

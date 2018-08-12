@@ -1,7 +1,7 @@
-package com.hellowood.dynamicdatasource.configuration;
+package com.db.dynamicdatasource.configuration;
 
 
-import com.hellowood.dynamicdatasource.common.DataSourceKey;
+import com.db.dynamicdatasource.common.DataSourceKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

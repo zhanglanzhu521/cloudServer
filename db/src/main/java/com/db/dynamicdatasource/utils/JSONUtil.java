@@ -1,4 +1,4 @@
-package com.hellowood.dynamicdatasource.utils;
+package com.db.dynamicdatasource.utils;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

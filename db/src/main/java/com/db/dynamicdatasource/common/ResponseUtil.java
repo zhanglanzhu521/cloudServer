@@ -1,6 +1,6 @@
-package com.hellowood.dynamicdatasource.common;
+package com.db.dynamicdatasource.common;
 
-import com.hellowood.dynamicdatasource.utils.JSONUtil;
+import com.db.dynamicdatasource.utils.JSONUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

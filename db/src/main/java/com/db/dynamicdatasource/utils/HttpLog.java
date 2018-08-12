@@ -1,4 +1,4 @@
-package com.hellowood.dynamicdatasource.utils;
+package com.db.dynamicdatasource.utils;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -25,7 +25,7 @@ public class HttpLog {
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-    @Pointcut("execution(public * com.hellowood.dynamicdatasource.controller.*.*(..))")
+    @Pointcut("execution(public * com.db.dynamicdatasource.controller.*.*(..))")
     public void httpLog() {
 
     }

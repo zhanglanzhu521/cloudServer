@@ -1,7 +1,7 @@
-package com.hellowood.dynamicdatasource.common;
+package com.db.dynamicdatasource.common;
 
 
-import com.hellowood.dynamicdatasource.utils.JSONUtil;
+import com.db.dynamicdatasource.utils.JSONUtil;
 
 /**
  * @Title :通用返回类型

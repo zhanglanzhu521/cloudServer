@@ -120,9 +120,9 @@
 ```
 The dependencies of some of the beans in the application context form a cycle:
 
-   produceController (field private cn.com.hellowood.dynamicdatasource.service.ProductService cn.com.hellowood.dynamicdatasource.controller.ProduceController.productService)
+   produceController (field private cn.ProductService cn.com.hellowood.dynamicdatasource.controller.ProduceController.productService)
       ↓
-   productService (field private cn.com.hellowood.dynamicdatasource.mapper.ProductDao cn.com.hellowood.dynamicdatasource.service.ProductService.productDao)
+   productService (field private cn.ProductDao cn.ProductService.productDao)
       ↓
    productDao defined in file [/Users/hehuimin/Downloads/Dev/SpringBoot/DynamicDataSource/out/production/classes/cn/com/hellowood/dynamicdatasource/mapper/ProductDao.class]
       ↓

@@ -1,4 +1,4 @@
-package com.hellowood.dynamicdatasource.configuration;
+package com.db.dynamicdatasource.configuration;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -31,7 +31,7 @@ public class DynamicDataSourceAspect {
     /**
      * Dao aspect.
      */
-    @Pointcut("execution( * com.hellowood.dynamicdatasource.mapper.*.*(..))")
+    @Pointcut("execution( * com.db.dynamicdatasource.mapper.*.*(..))")
     public void daoAspect() {
     }
 

@@ -1,10 +1,10 @@
-package com.hellowood.dynamicdatasource.controller;
+package com.db.dynamicdatasource.controller;
 
-import com.hellowood.dynamicdatasource.common.CommonResponse;
-import com.hellowood.dynamicdatasource.common.ResponseUtil;
-import com.hellowood.dynamicdatasource.modal.Product;
-import com.hellowood.dynamicdatasource.service.ProductService;
-import com.hellowood.dynamicdatasource.utils.ServiceException;
+import com.db.dynamicdatasource.common.ResponseUtil;
+import com.db.dynamicdatasource.modal.Product;
+import com.db.dynamicdatasource.utils.ServiceException;
+import com.db.dynamicdatasource.common.CommonResponse;
+import com.db.dynamicdatasource.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

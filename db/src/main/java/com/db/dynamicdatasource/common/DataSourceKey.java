@@ -19,9 +19,9 @@ public enum DataSourceKey {
     /**
      * Slave beta data source key.
      */
-//    slaveBeta,
+    slaveBeta,
     /**
      * Slave gamma data source key.
      */
-//    slaveGamma
+    slaveGamma
 }

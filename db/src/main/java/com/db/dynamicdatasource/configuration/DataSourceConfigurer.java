@@ -52,22 +52,22 @@ public class DataSourceConfigurer {
      *
      * @return the data source
      */
-//    @Bean("slaveBeta")
-//    @ConfigurationProperties(prefix = "spring.datasource.druid.slave-beta")
-//    public DataSource slaveBeta() {
-//        return DruidDataSourceBuilder.create().build();
-//    }
+    @Bean("slaveBeta")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.slave-beta")
+    public DataSource slaveBeta() {
+        return DruidDataSourceBuilder.create().build();
+    }
 
-//    /**
-//     * Slave gamma data source.
-//     *
-//     * @return the data source
-//     */
-//    @Bean("slaveGamma")
-//    @ConfigurationProperties(prefix = "spring.datasource.druid.slave-gamma")
-//    public DataSource slaveGamma() {
-//        return DruidDataSourceBuilder.create().build();
-//    }
+    /**
+     * Slave gamma data source.
+     *
+     * @return the data source
+     */
+    @Bean("slaveGamma")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.slave-gamma")
+    public DataSource slaveGamma() {
+        return DruidDataSourceBuilder.create().build();
+    }
 
     /**
      * Dynamic data source.
@@ -80,8 +80,8 @@ public class DataSourceConfigurer {
         Map<Object, Object> dataSourceMap = new HashMap<>(4);
         dataSourceMap.put(DataSourceKey.master.name(), master());
         dataSourceMap.put(DataSourceKey.slaveAlpha.name(), slaveAlpha());
-//        dataSourceMap.put(DataSourceKey.slaveBeta.name(), slaveBeta());
-//        dataSourceMap.put(DataSourceKey.slaveGamma.name(), slaveGamma());
+        dataSourceMap.put(DataSourceKey.slaveBeta.name(), slaveBeta());
+        dataSourceMap.put(DataSourceKey.slaveGamma.name(), slaveGamma());
 
         // Set master datasource as default
         dynamicRoutingDataSource.setDefaultTargetDataSource(master());

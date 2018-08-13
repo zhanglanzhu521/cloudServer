@@ -1,0 +1,31 @@
+https://github.com/helloworlde/SpringBoot-DynamicDataSource
+本项目使用 Spring Boot 和 MyBatis 实现多数据源，动态数据源的切换；有多种不同的实现方式，在学习的过程中发现没有文章将这些方式和常见的问题集中处理，所以将常用的方式和常见的问题都写在了在本项目的不同分支上：
+
+
+master: 使用了多数据源的 RESTful API 接口，使用 Druid 实现了 DAO 层数据源动态切换和只读数据源负载均衡
+dev: 最简单的切面和注解方式实现的动态数据源切换
+druid: 通过切面和注解方式实现的使用 Druid 连接池的动态数据源切换
+aspect_dao: 通过切面实现的 DAO 层的动态数据源切换
+roundrobin: 通过切面使用轮询方式实现的只读数据源负载均衡
+hikari: 升级到SpringBoot 2.0, 数据源使用 Hikari
+
+
+以上分支都是基于 dev 分支修改或扩充而来，基本涵盖了常用的多数据源动态切换的方式，基本的原理都一样，都是通过切面根据不同的条件在执行数据库操作前切换数据源
+
+
+在使用的过程中基本踩遍了所有动态数据源切换的坑，将常见的一些坑和解决方法写在了 Issues 里面
+
+该项目使用了一个可写数据源和多个只读数据源，为了减少数据库压力，使用轮循的方式选择只读数据源；考虑到在一个 Service 中同时会有读和写的操作，所以本应用使用 AOP 切面通过 DAO 层的方法名切换只读数据源；但这种方式要求数据源主从一致，并且应当避免在同一个 Service 方法中写入后立即查询，如果必须在执行写入操作后立即读取，应当在 Service 方法上添加 @Transactional 注解以保证使用主数据源
+
+需要注意的是，使用 DAO 层切面后不应该在 Service 类层面上加 @Transactional 注解，而应该添加在方法上，这也是 Spring 推荐的做法
+
+动态切换数据源依赖 configuration 包下的4个类来实现，分别是：
+
+DataSourceRoutingDataSource.java
+DataSourceConfigurer.java
+DynamicDataSourceContextHolder.java
+DynamicDataSourceAspect.java
+
+
+
+在该应用中因为使用了 DAO 层的切面切换数据源，所以 @Transactional 注解不能加在类上，只能用于方法；有 @Trasactional注解的方法无法切换数据源

@@ -26,6 +26,7 @@
         <module>/trace-a</module>
         <module>/trace-b</module>
         <module>/zipkin</module>
+        <module>/db</module>
     </modules>
 
 

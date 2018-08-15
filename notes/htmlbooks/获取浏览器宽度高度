@@ -1,0 +1,6 @@
+console.log("clientWidth:" + document.body.clientWidth); //标题居中显示-str
+    console.log("clientHeight:" + document.body.clientHeight);
+
+    var activeId = $("#activeId").val();
+    var div2 = document.getElementById("hasBeen1");
+    div2.style.left = document.body.clientWidth/2+"px"; //标题居中显示end

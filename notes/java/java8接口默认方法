@@ -1,0 +1,4 @@
+如下面的代码所示，我们可以通过添加一个default方法来解决上述的API问题。default方法通常使用已经存在的方法进行定义，如remainder方法使用了subtract、multiply和divide方法。
+default int remainder(int number, int divisor) {
+    return subtract(number, multiply(divisor, divide(number, divisor)));
+}

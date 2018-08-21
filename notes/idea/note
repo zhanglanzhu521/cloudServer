@@ -3,7 +3,7 @@ http://plugins.jetbrains.com 插件官网
 https://www.w3cschool.cn/intellij_idea_doc/intellij_idea_doc-prvw2ds1.html 教程地址
 
 在新窗口中打开文件
- 选中你要打开的文件 → shift+enter
+ 选中你要打开的文件 → shift+enter 或者shift+F4
 
 
 IntelliJ IDEA 在编辑器选项卡之间导航 按 Ctrl+Tab 使用 切换器。包括分屏的切换
@@ -11,3 +11,7 @@ IntelliJ IDEA 在编辑器选项卡之间导航 按 Ctrl+Tab 使用 切换器。
 
 解决无限 This file is indented with tabs instead of 4 spaces
 File -> Settings -> Editor -> Code Style -> Java -> Tabs and Indents -> Use tab character
+
+
+
+你好
